@@ -12,12 +12,12 @@ const config = {
     SECONDS_PER_SUB: 300,
     //The amount of seconds to add per single ember
     SECONDS_PER_EMBER: 1,
+    //The amount of seconds to add per spark
+    SECONDS_PER_SPARK: 0,
     //The amount of seconds to add per follow
     SECONDS_PER_FOLLOW: 0,
     //The amount of seconds to add per host
     SECONDS_PER_HOST: 0,
-    //The amount of seconds to add per spark
-    SECONDS_PER_SPARK: 0,
     //The format the time should display as
     //Variables allowed: %HOURS%, %MINUTES%, %SECONDS%
     TIME_FORMAT: "%HOURS%:%MINUTES%:%SECONDS%"
