@@ -54,15 +54,15 @@ async function start(channel) {
     //Add Carina to handle our subscription events
     var ca = new carina.Carina().open();
     ca.subscribe(`channel:${channel}:subscribed`, () => {
-        addTime(300);
+        addTime(config.SECONDS_PER_SUB);
     });
 
     ca.subscribe(`channel:${channel}:resubShared`, () => {
-        addTime(300);
+        addTime(config.SECONDS_PER_SUB);
     });
 
     ca.subscribe(`channel:${channel}:subscriptionGifted`, () => {
-        addTime(300);
+        addTime(config.SECONDS_PER_SUB);
     });
 }
 
@@ -167,9 +167,4 @@ function formatTime(givenSeconds) {
     return hourDisplay + ":" + minuteDisplay + ":" + secondDisplay;
 }
 
-let searchParams = new URLSearchParams(window.location.search);
-if (searchParams.has("channel")) {
-    start(searchParams.get("channel")); //Starts our process with the given channel param
-} else {
-    document.getElementById("curTime").innerHTML = "ERROR: No channel name given";
-}
+start(config.CHANNEL_NAME);
