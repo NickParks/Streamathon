@@ -64,14 +64,6 @@ async function start(channel) {
     ca.subscribe(`channel:${channel}:subscriptionGifted`, () => {
         addTime(config.SECONDS_PER_SUB);
     });
-
-    ca.subscribe(`channel:${channel}:skill`, (skill) => {
-        console.log(skill);
-        if (skill.currencyType == "Embers") {
-            let timeToAdd = skill.price * config.SECONDS_PER_EMBER;
-            addTime(timeToAdd);
-        }
-    });
 }
 
 /**
@@ -132,11 +124,8 @@ async function connectToChat(endpoint, channel) {
             // Check if it's embers that have been used in the chat socket under the "ChatMessage" event
             // because that makes complete sense when there's a 'SkillAttribution' and 'skill' carina event
             if (parsedMessage.data.message.meta.is_skill) {
-                console.log(parsedMessage.data.message.meta.skill);
-
                 if (parsedMessage.data.message.meta.skill.currency == "Embers") {
                     let timeToAdd = parsedMessage.data.message.meta.skill.cost * config.SECONDS_PER_EMBER;
-                    console.log(`A ${parsedMessage.data.message.meta.skill.cost} skill added ${timeToAdd} seconds`);
                     addTime(timeToAdd);
                 }
             }
