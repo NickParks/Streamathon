@@ -10,7 +10,6 @@ async function start(channel) {
     //Check for saved time
     if (localStorage.getItem("savedTime") != undefined) {
         storedTime = parseInt(localStorage.getItem("savedTime"));
-        console.log("Found time: " + parseInt(storedTime));
     }
 
     //If our query parameter is not the channel ID then query it
@@ -22,7 +21,6 @@ async function start(channel) {
         }
 
         let channelJson = await channelIdRequest.json();
-        console.log(channelJson);
 
         channel = channelJson.id;
     }
@@ -82,8 +80,6 @@ async function connectToChat(endpoint, channel) {
     chatSocket.addEventListener('message', (message) => {
         let parsedMessage = JSON.parse(message.data);
 
-        console.log(parsedMessage);
-
         if (parsedMessage.event == "WelcomeEvent") {
             chatSocket.send(JSON.stringify({
                 "type": "method",
@@ -142,6 +138,13 @@ function addTime(seconds) {
     let prevTime = storedTime;
 
     storedTime = parseInt(storedTime) + parseInt(seconds);
+
+    //Hit a max value
+    if (storedTime > config.MAX_TIME) {
+        let difference = storedTime - config.MAX_TIME;
+        storedTime = storedTime - difference;
+    }
+
     localStorage.setItem("savedTime", storedTime);
 
     //Performs an animation of an upwards "count"
