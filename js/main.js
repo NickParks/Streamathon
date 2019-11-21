@@ -77,8 +77,9 @@ async function start(channel) {
  * Connects to the Mixer chat endpoint and begins to listen for chat message events
  *
  * @param {*} endpoint The endpoint
+ * @param {*} channel The channel ID
  */
-async function connectToChat(endpoint) {
+async function connectToChat(endpoint, channel) {
     const chatSocket = new WebSocket(endpoint);
 
     chatSocket.addEventListener('open', (event) => {
@@ -92,7 +93,7 @@ async function connectToChat(endpoint) {
             chatSocket.send(JSON.stringify({
                 "type": "method",
                 "method": "auth",
-                "arguments": [774],
+                "arguments": [channel],
                 "id": 0
             }));
         }
