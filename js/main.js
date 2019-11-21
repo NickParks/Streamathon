@@ -64,6 +64,13 @@ async function start(channel) {
     ca.subscribe(`channel:${channel}:subscriptionGifted`, () => {
         addTime(config.SECONDS_PER_SUB);
     });
+
+    ca.subscribe(`channel:${channel}:skill`, (skill) => {
+        if (skill.currencyType == "Embers") {
+            let timeToAdd = skill.price * config.SECONDS_PER_EMBER;
+            addTime(timeToAdd);
+        }
+    });
 }
 
 /**
@@ -155,7 +162,7 @@ function addTime(seconds) {
  * @returns
  */
 function formatTime(givenSeconds) {
-    date = Number(givenSeconds); //Make d
+    date = Number(givenSeconds);
     var hours = Math.floor(date / 3600);
     var minutes = Math.floor(date % 3600 / 60);
     var seconds = Math.floor(date % 3600 % 60);
