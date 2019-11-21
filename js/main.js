@@ -1,4 +1,4 @@
-var storedTime = parseInt(0);
+var storedTime = parseInt(config.STARTING_TIME);
 var isAnimation = false;
 
 /**
