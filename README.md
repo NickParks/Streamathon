@@ -2,7 +2,7 @@
 A basic streamathon timer for use in a browser overlay
 
 ## How to use
-1. Download the latest release from the [Releases Tab](https://github.com/NickParks/Streamathon/releases)
+1. Download the latest release from the [Releases Tab](https://github.com/NickParks/Streamathon/releases) (click `Source code (zip)`)
 2. Extract the `Streamathon-x.x.zip` file to a location you will remember.
 3. Open the `config.js` file in a text editor and modify the values to your liking
 4. Save the file and exit
