@@ -50,9 +50,9 @@ async function start(channel) {
         localStorage.setItem("savedTime", storedTime);
     }, 1000 * 5);
 
-
     //Add Carina to handle our subscription events
-    var ca = new carina.Carina().open();
+    const ca = new carina.Carina().open();
+
     ca.subscribe(`channel:${channel}:subscribed`, () => {
         addTime(config.SECONDS_PER_SUB);
     });
@@ -164,15 +164,22 @@ function addTime(seconds) {
  */
 function formatTime(givenSeconds) {
     date = Number(givenSeconds);
-    var hours = Math.floor(date / 3600);
-    var minutes = Math.floor(date % 3600 / 60);
-    var seconds = Math.floor(date % 3600 % 60);
+    let hours = Math.floor(date / 3600);
+    let minutes = Math.floor(date % 3600 / 60);
+    let seconds = Math.floor(date % 3600 % 60);
 
-    var hourDisplay = hours <= 9 ? "0" + hours : hours;
-    var minuteDisplay = minutes <= 9 ? "0" + minutes : minutes;
-    var secondDisplay = seconds <= 9 ? "0" + seconds : seconds;
+    let hourDisplay = hours <= 9 ? "0" + hours : hours;
+    let minuteDisplay = minutes <= 9 ? "0" + minutes : minutes;
+    let secondDisplay = seconds <= 9 ? "0" + seconds : seconds;
 
-    return hourDisplay + ":" + minuteDisplay + ":" + secondDisplay;
+    //Take our config format and replace variables
+
+    let finalTime = config.TIME_FORMAT
+        .replace("%HOURS%", hourDisplay)
+        .replace("%MINUTES%", minuteDisplay)
+        .replace("%SECONDS%", secondDisplay);
+
+    return finalTime;
 }
 
 start(config.CHANNEL_NAME);
