@@ -8,6 +8,21 @@ A basic streamathon timer for use in a browser overlay
 4. Save the file and exit
 5. Open your streaming software and create a browser source with `index.html` from the folder selected.
 
+## In chat commands
+Channel Owners and Moderators have commands they can use to modify the timer live through chat.
+
+##### !addtime [amount in seconds]
+ This command will add the given amount of seconds to the current time.
+ 
+ Example: `!addtime 60` for adding 60 seconds.
+ 
+ 
+##### !settime [amount in seconds]
+ This command will force set the amount of time on the timer.
+ 
+ Example: `!settime 120` will set the current timer to 2 minutes.
+ 
+ 
 ## Config options
 ##### Channel name
 Make sure to change this to your own channel
