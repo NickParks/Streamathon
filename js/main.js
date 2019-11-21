@@ -50,7 +50,20 @@ async function start(channel) {
         localStorage.setItem("savedTime", storedTime);
     }, 1000 * 5);
 
-   
+
+    //Add Carina to handle our subscription events
+    var ca = new carina.Carina().open();
+    ca.subscribe(`channel:${channel}:subscribed`, () => {
+        addTime(300);
+    });
+
+    ca.subscribe(`channel:${channel}:resubShared`, () => {
+        addTime(300);
+    });
+
+    ca.subscribe(`channel:${channel}:subscriptionGifted`, () => {
+        addTime(300);
+    });
 }
 
 /**
