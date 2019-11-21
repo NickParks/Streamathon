@@ -22,16 +22,34 @@ Channel Owners and Moderators have commands they can use to modify the timer liv
  
  Example: `!settime 120` will set the current timer to 2 minutes.
  
+##### !resettime
+ This command will reset the time back to the `STARTING_TIME` set in the configuration.
  
 ## Config options
 ##### Channel name
 Make sure to change this to your own channel
 
-##### Seconds per sub
+#### Starting time
+The default amount of seconds the timer should start at
+
+#### Max time
+The maximum amount of seconds the timer should reach
+
+##### Seconds per Sub
 This includes resubscrptions, gifted subs, new subs, etc.
 
-##### Seconds per ember
+##### Seconds per Ember
 How many seconds to add *for each single ember*
+
+##### Seconds per Spark
+How many seconds to add *for each single spark*
+
+##### Seconds per Follow
+How many seconds to add for each new follow. *This includes a spam filter that lasts the duration of the stream*
+
+#### Seconds per Host
+How many seconds to add for each new host. *This includes a spam filter that lasts the duration of the stream*
+
 
 ##### Time format
 This is how the time will display on the browser source. Your allowed variables are `%HOURS%`, `%MINUTES%`, and `%SECONDS%`.
