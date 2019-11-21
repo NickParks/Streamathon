@@ -1,6 +1,10 @@
 var storedTime = parseInt(config.STARTING_TIME);
 var isAnimation = false;
 
+//Arrays to store to stop from abusing host/follow spam
+var antiSpamFollow = [];
+var antiSpamHost = [];
+
 /**
  * Javascript sucks so I have to parseInt the world otherwise it keeps thinking
  *  "0" is a string and it makes me wanna cry
@@ -62,6 +66,24 @@ async function start(channel) {
     ca.subscribe(`channel:${channel}:subscriptionGifted`, () => {
         addTime(config.SECONDS_PER_SUB);
     });
+
+    ca.subscribe(`channel:${channel}:followed`, (data) => {
+        if (data.following) {
+            if (antiSpamFollow.indexOf(data.user.id) != -1) {
+                antiSpamFollow.push(data.user.id);
+
+                addTime(config.SECONDS_PER_FOLLOW);
+            }
+        }
+    });
+
+    ca.subscribe(`channel:${channel}:hosted`, (data) => {
+        if (antiSpamHost.indexOf(data.hosterId) != -1) {
+            antiSpamHost.push(data.hosterId);
+
+            addTime(config.SECONDS_PER_HOST);
+        }
+    });
 }
 
 /**
@@ -115,6 +137,11 @@ async function connectToChat(endpoint, channel) {
                         }
                     }
                 }
+
+                if (parsedMessage.data.message.message[0].text.startsWith("!resettime")) {
+                    localStorage.removeItem("savedTime");
+                    window.location.reload();
+                }
             }
 
             // Check if it's embers that have been used in the chat socket under the "ChatMessage" event
@@ -122,6 +149,11 @@ async function connectToChat(endpoint, channel) {
             if (parsedMessage.data.message.meta.is_skill) {
                 if (parsedMessage.data.message.meta.skill.currency == "Embers") {
                     let timeToAdd = parsedMessage.data.message.meta.skill.cost * config.SECONDS_PER_EMBER;
+                    addTime(timeToAdd);
+                }
+
+                if (parsedMessage.data.message.meta.skill.currency == "Sparks") {
+                    let timeToAdd = parsedMessage.data.message.meta.skill.cost * config.SECONDS_PER_SPARK;
                     addTime(timeToAdd);
                 }
             }
