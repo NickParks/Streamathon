@@ -49,6 +49,8 @@ async function start(channel) {
     setInterval(() => {
         localStorage.setItem("savedTime", storedTime);
     }, 1000 * 5);
+
+   
 }
 
 /**
@@ -117,18 +119,20 @@ function addTime(seconds) {
     storedTime = parseInt(storedTime) + parseInt(seconds);
     localStorage.setItem("savedTime", storedTime);
 
-    isAnimation = true;
-
     //Performs an animation of an upwards "count"
-    let interval = setInterval(() => {
-        if (prevTime != storedTime && isAnimation) {
-            prevTime++;
-            document.getElementById("curTime").innerHTML = formatTime(prevTime);
-        } else {
-            isAnimation = false; //They're equal so end animation
-            clearInterval(interval);
-        }
-    }, 50);
+    if (!isAnimation) {
+        isAnimation = true;
+
+        let interval = setInterval(() => {
+            if (prevTime != storedTime && isAnimation) {
+                prevTime++;
+                document.getElementById("curTime").innerHTML = formatTime(prevTime);
+            } else {
+                isAnimation = false; //They're equal so end animation
+                clearInterval(interval);
+            }
+        }, 50);
+    }
 }
 
 /**
