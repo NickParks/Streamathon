@@ -18,6 +18,10 @@ const config = {
     SECONDS_PER_FOLLOW: 0,
     //The amount of seconds to add per host
     SECONDS_PER_HOST: 0,
+    //The amount of time per dollar
+    SECONDS_PER_DOLLAR: 120,
+    //Streamlabs Socket Token (https://streamlabs.com/dashboard#/settings/api-settings)
+    STREAMLABS_SOCKET_TOKEN: '',
     //The format the time should display as
     //Variables allowed: %HOURS%, %MINUTES%, %SECONDS%
     TIME_FORMAT: "%HOURS%:%MINUTES%:%SECONDS%"

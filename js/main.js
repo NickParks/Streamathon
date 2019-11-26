@@ -161,6 +161,21 @@ async function connectToChat(endpoint, channel) {
     });
 }
 
+function connectToStreamlabs() {
+    console.log("Attempting to connect to StreamLabs...");
+    const streamlabs = io(`https://sockets.streamlabs.com?token=${config.STREAMLABS_SOCKET_TOKEN}`, { transports: ['websocket'] });
+
+    //Perform Action on event
+    streamlabs.on('event', (eventData) => {
+        if (eventData.type == 'donation') {
+            let donoAmount = eventData.message[0].amount;
+            let amountToAdd = donoAmount * config.SECONDS_PER_DOLLAR;
+            addTime(Math.round(amountToAdd));
+        }
+    });
+
+}
+
 /**
  * Adds seconds to the stored time variable
  *
@@ -222,3 +237,16 @@ function formatTime(givenSeconds) {
 }
 
 start(config.CHANNEL_NAME);
+
+if (config.STREAMLABS_SOCKET_TOKEN != undefined && config.STREAMLABS_SOCKET_TOKEN != '') {
+    //Load our socket.io script into DOM if we need to
+    let ref = document.getElementsByTagName('script')[0];
+    let script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js';
+    ref.parentNode.insertBefore(script, ref);
+
+    //Once it's loaded we can connect to StreamLabs
+    script.onload = function () {
+        connectToStreamlabs();
+    }
+}
