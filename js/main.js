@@ -113,7 +113,7 @@ async function connectToChat(endpoint, channel) {
 
         if (parsedMessage.event == "ChatMessage") {
             //Moderator+ check
-            if (parsedMessage.data.user_roles.indexOf('Owner') != -1 || parsedMessage.data.user_roles.indexOf('Moderator') != -1) {
+            if (parsedMessage.data.user_roles.indexOf('Owner') != -1 || parsedMessage.data.user_roles.indexOf('ChannelEditor') != -1 || parsedMessage.data.user_roles.indexOf('Mod') != -1) {
                 //Check if it's add command
                 if (parsedMessage.data.message.message[0].text.startsWith("!addtime")) {
                     //Parse & add time if it's an int
