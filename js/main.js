@@ -199,12 +199,14 @@ function addTime(seconds) {
         isAnimation = true;
 
         let interval = setInterval(() => {
-            if (prevTime != storedTime && isAnimation) {
+            if (prevTime < storedTime && isAnimation) {
                 prevTime++;
                 document.getElementById("curTime").innerHTML = formatTime(prevTime);
             } else {
                 isAnimation = false; //They're equal so end animation
                 clearInterval(interval);
+                
+                document.getElementById("curTime").innerHTML = formatTime(storedTime); // ensure timer is at the correct value
             }
         }, 50);
     }
