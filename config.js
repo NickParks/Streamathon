@@ -22,6 +22,10 @@ const config = {
     SECONDS_PER_DOLLAR: 120,
     //Streamlabs Socket Token (https://streamlabs.com/dashboard#/settings/api-settings)
     STREAMLABS_SOCKET_TOKEN: '',
+    //The size of the font in pixels (default is 32)
+    FONT_SIZE: "32",
+    //The color of the font
+    FONT_COLOR: "black",
     //The format the time should display as
     //Variables allowed: %HOURS%, %MINUTES%, %SECONDS%
     TIME_FORMAT: "%HOURS%:%MINUTES%:%SECONDS%"

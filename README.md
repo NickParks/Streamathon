@@ -53,9 +53,14 @@ How many seconds to add for each new host. *This includes a spam filter that las
 #### Seconds per Dollar
 How many seconds to add for each dollar.
 
-
 #### StreamLabs Socket Token
 Go to https://streamlabs.com/dashboard#/settings/api-settings and click `API Tokens`. "Your socket API Token" is the one you need.
+
+#### Font Size
+The size of the font in pixels.
+
+#### Font Color
+The color the text should be
 
 ##### Time format
 This is how the time will display on the browser source. Your allowed variables are `%HOURS%`, `%MINUTES%`, and `%SECONDS%`.

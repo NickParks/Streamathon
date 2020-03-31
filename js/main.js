@@ -205,7 +205,7 @@ function addTime(seconds) {
             } else {
                 isAnimation = false; //They're equal so end animation
                 clearInterval(interval);
-                
+
                 document.getElementById("curTime").innerHTML = formatTime(storedTime); // ensure timer is at the correct value
             }
         }, 50);
@@ -251,4 +251,12 @@ if (config.STREAMLABS_SOCKET_TOKEN != undefined && config.STREAMLABS_SOCKET_TOKE
     script.onload = function () {
         connectToStreamlabs();
     }
+}
+
+if (config.FONT_SIZE != undefined) {
+    document.body.style.fontSize = config.FONT_SIZE + "px";
+}
+
+if (config.FONT_COLOR != undefined) {
+    document.body.style.color = config.FONT_COLOR;
 }
