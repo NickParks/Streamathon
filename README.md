@@ -4,7 +4,7 @@ A basic streamathon timer for use in a browser overlay
 ## How to use
 1. Download the latest release from the [Releases Tab](https://github.com/NickParks/Streamathon/releases) (click `Source code (zip)`)
 2. Extract the `Streamathon-x.x.zip` file to a location you will remember.
-3. Open the `config.js` file in a text editor and modify the values to your liking
+3. Open the `config.js` file in a text editor and modify the values to your liking (You can see all options explained [Here](https://github.com/NickParks/Streamathon#config-options))
 4. Save the file and exit
 5. Open your streaming software and create a browser source with `index.html` from the folder selected.
 
